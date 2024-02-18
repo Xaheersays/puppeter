@@ -1,9 +1,17 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
-
+const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT || 3000;
+const chromium = require('@sparticuz/chromium')
+// import Chromium from '@sparticuz/chromium';
 
+app.use(cors({
+  origin: '*'
+}));
+
+chromium.setHeadlessMode = true;
+chromium.setGraphicsMode = false;
 
 
 app.get('/search/:keyword', async (req, res) => {
@@ -12,7 +20,12 @@ app.get('/search/:keyword', async (req, res) => {
   res.json(products);
 });
 async function scrapeAmazon(keyword) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  });
   const page = await browser.newPage();
   
   await page.goto(`https://www.amazon.com/s?k=${keyword}`);
