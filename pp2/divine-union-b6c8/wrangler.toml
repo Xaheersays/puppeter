@@ -5,7 +5,7 @@ compatibility_flags = [ "nodejs_compat" ]
 
 browser = { binding = "MYBROWSER" }
 kv_namespaces = [
-  { binding = "BROWSER_KV_DEMO", id = "22cf855786094a88a6906f8edac425cd", preview_id = "22fc13fb3adf4a5182a97bf1a412d43e" }
+  { binding = "BROWSER_KV_DEMO", id = "d0becd7bde5943d3a3b06b2666505f7b", preview_id = "22fc13fb3adf4a5182a97bf1a412d43e" }
 ]
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
